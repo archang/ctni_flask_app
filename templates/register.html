@@ -2,4 +2,31 @@
 
 {% block content %}
     <h1>{% block title %}Test Registration {% endblock %}</h1>
+    <h4>Fill the form</h4>
+            <p>The form below will store the details in your AWS RDS MySQL Workbench</p>
+            <form action="/insert" method="POST">
+              <div class="form-group">
+                <label for="usr">Name:</label>
+                <input name="name" type="text" class="form-control" id="usr">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Email:</label>
+                <input name="email" type="email" class="form-control" id="pwd">
+              </div>
+
+              <div class="radio">
+                <label>Role</label><br>
+                <label class="radio-inline"><input type="radio" name="optradio" value="Male">Student</label>
+              </div>
+              <div class="radio">
+                <label class="radio-inline"><input type="radio" name="optradio" value="Female">Experience</label>
+              </div>
+<div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+              </div>
+
+              <br>
+              <input type="submit" name="submit" value="Submit" class="btn btn-success">
+            </form>
 {% endblock %}
