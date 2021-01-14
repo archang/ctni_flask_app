@@ -1,0 +1,4 @@
+mysql_host: 'ctni.cmuad72yozvs.us-east-1.rds.amazonaws.com'
+mysql_user: 'admin'
+mysql_password: ''
+mysql_db: 'ctni'

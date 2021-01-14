@@ -1,5 +1,88 @@
-{% extends 'base.html' %}
+<!doctype html>
+<html lang="en">
+  <head>
 
-{% block content %}
-    <h1>{% block title %} Login {% endblock %}</h1>
-{% endblock %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: rgb(255, 255, 255);
+		}
+		.row{
+			background: rgb(240, 240, 240);
+			border-radius: 30px;
+			box-shadow: 12px 12px 22px rgb(75,75,75);
+		}
+		img{
+			border-top-left-radius: 15px;
+			border-bottom-left-radius: 15px
+		}
+		.btn1{
+			border: none;
+			outline: none;
+			height: 50px;
+			width: 100%;
+			background-color: rgb(0,0,0);
+			color: rgb(255,255,255);
+			border-radius: 4px;
+			font-weight: bold;
+		}
+		.btn1:hover{
+			background: rgb(255,255,255);
+			border: 1px solid;
+			color: rgb(0,0,0);
+		}
+	</style>
+  </head>
+  <body>
+  
+	<section class="Form my-4 mx-5">
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-lg-5">
+					<img src="./SS/3.jpg" class="img-fluid" alt="">
+				</div>
+				<div class="col-lg-7 px-5 pt-5">
+					<h1 class="font-weight-bold py-3 ">Northeastern CTNI</h1>
+					<h4>Sign into your account</h4>
+					<form>
+						<div class="form-row">
+							<div class="col-lg-7">
+								<input type="email" placeholder="Email-Address" class="form-control my-3 p-4">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-lg-7">
+								<input type="password" placeholder="******" class="form-control my-3 p-4">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-lg-7">
+								<button type="button" class="btn1 mt-3 mb-5">login</button>
+							</div>
+						</div>
+						<a href="#">Forgot Password</a>
+						<p>Don't have an account? <a href="#">Register here</a></p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
