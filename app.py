@@ -1,14 +1,28 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, backref
+
 from flask import Flask, render_template, request, flash, redirect,url_for, jsonify, session
 from flask import Response,send_file
 import re
 import rds_db as db
 import datetime
 import json
+from s3_upload import list_files, download_file, upload_file
+from werkzeug.utils import secure_filename
+from helpers import *
+import sys
+from flask_cors import CORS
+from config import S3_BUCKET
 
 app = Flask(__name__)
+CORS(app)
+
+UPLOAD_FOLDER = "uploads"
+BUCKET = "ctni-bucket"
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def is_float(val):
     try:
@@ -16,8 +30,6 @@ def is_float(val):
         return num
     except ValueError:
         return val
-
-
 
 @app.route('/')
 def index():
@@ -38,8 +50,6 @@ def register():
             var = detail
         return render_template('register.html', var=var)
 
-
-
 @app.route('/login', methods =['GET', 'POST'])
 def login():
     msg = ''
@@ -59,8 +69,6 @@ def login():
         #    msg = 'Incorrect username / password !'
     return render_template('login.html', msg = msg)
 
-
-
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -73,14 +81,50 @@ def users():
             var = detail
         return(jsonify(details))
 
+@app.route('/upload', methods=['POST'])
+def upload_file():
+
+    # A
+    print("hereA", file=sys.stderr)
+    file = request.files['file']
+
+
+
+    """
+        These attributes are also available
+
+        file.filename               # The actual name of the file
+        file.content_type
+        file.content_length
+        file.mimetype
+
+    """
+
+    # C.
+    if file.filename == "":
+        print("herec", file=sys.stderr)
+        return "Please select a file"
+
+    # D.
+    if file and allowed_file(file.filename):
+        file.filename = secure_filename(file.filename)
+        print(file.filename, file=sys.stderr)
+        output   	  = upload_file_to_s3(file, S3_BUCKET)
+        print("hered", file=sys.stderr)
+        return str(output)
+
+    else:
+        print("hereredirect", file=sys.stderr)
+        return redirect("/")
+
 @app.route('/studies', methods=['GET'])
 def studies():
     if request.method == 'GET':
         study_list = db.get_studies_scans()
-        studies=[]
+        studiesArr = []
 
         for study in study_list:
-            studies.append({'Study_ID': study[0],
+            studiesArr.append({'Study_ID': study[0],
                         "Study_Description": study[1],
                         "Study_Name": study[2],
                         "Study_Rating": study[3],
@@ -100,33 +144,17 @@ def studies():
                         "SliceOrient": study[17],
                             "Study_Owner" : study[18],
                         })
-        return jsonify(studies)
+        return jsonify(studiesArr)
         #
         # print(details)
         # return(json.dumps({'studies' : studies}, default=str))
         # return(jsonify(details))
 
-# @app.route('/users',methods=['GET'])
-# def users():
-#     from sqlalchemy.orm import scoped_session, sessionmaker, Query
-#     db_session = scoped_session(sessionmaker(bind=engine))
-#     return(jsonify(db_session.Account.query.all()))
-#     item_list=[]
-#     for item in db_session.query(Account.User_ID, Account.Username,Account.Role).all():
-#         item_list+=item
-#     return(jsonify(item_list))
+# @app.route("/upload", methods=['POST'])
+# def upload():
+#     if request.method == "POST":
+#         f = request.files['file']
+#         f.save(os.path.join(UPLOAD_FOLDER, f.filename))
+#         upload_file(f"uploads/{f.filename}", BUCKET)
 #
-# @app.route('/scans',methods=['GET'])
-# def scans():
-#     from sqlalchemy.orm import scoped_session, sessionmaker, Query
-#     db_session = scoped_session(sessionmaker(bind=engine))
-#     # return(jsonify(db_session.Account.query.all()))
-#     item_list = db_session.query(Scan.Scan_ID, Scan.SliceOrient).all()
-#     items = []
-#     #
-#     for item in item_list:
-#         items.append({'Scan_ID:' : item.Scan_ID, 'SliceOrient' : item.SliceOrient})
-#
-#     return(jsonify({'scan' : items}))
-#     # return jsonify(item_list)
-#     # return jsonify(Scan.metadata.tables['scan'].columns.keys())
+#         return redirect("/storage")

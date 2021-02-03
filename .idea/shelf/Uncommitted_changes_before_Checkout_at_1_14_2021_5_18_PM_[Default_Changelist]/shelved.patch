@@ -1,0 +1,52 @@
+Index: app.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import Flask, jsonify, session, redirect, url_for, request\r\nfrom sqlalchemy import create_engine\r\nfrom sqlalchemy.ext.declarative import declarative_base\r\nimport flask_login\r\nfrom sqlalchemy.orm import relationship, backref\r\n\r\n# store password in env variable\r\napp = Flask(__name__)\r\napp.secret_key='9f17ddrfa|bdb7dawe60eM95u'\r\nengine = create_engine('mysql://admin:Admin12345@ctni.cmuad72yozvs.us-east-1.rds.amazonaws.com:3306/ctni', convert_unicode=True, echo=False)\r\nBase = declarative_base()\r\nBase.metadata.reflect(engine)\r\n\r\nlogin_manager = flask_login.LoginManager()\r\nlogin_manager.init_app(app)\r\n\r\nclass Account(Base):\r\n    __table__ = Base.metadata.tables['account']\r\n\r\nclass CoilDetails(Base):\r\n    __table__ = Base.metadata.tables['coildetails']\r\n\r\nclass CoilTest(Base):\r\n    __table__ = Base.metadata.tables['coiltest']\r\n\r\nclass Groups(Base):\r\n    __table__ = Base.metadata.tables['groups']\r\n\r\nclass Preference(Base):\r\n    __table__ = Base.metadata.tables['preference']\r\n\r\nclass Profile(Base):\r\n    __table__ = Base.metadata.tables['profile']\r\n\r\nclass Projects(Base):\r\n    __table__ = Base.metadata.tables['projects']\r\n\r\nclass Reconstruction(Base):\r\n    __table__ = Base.metadata.tables['reconstruction']\r\n\r\nclass Registration(Base):\r\n    __table__ = Base.metadata.tables['registration']\r\n\r\nclass Roi(Base):\r\n    __table__ = Base.metadata.tables['roi']\r\n\r\nclass Scan(Base):\r\n    __table__ = Base.metadata.tables['scan']\r\n\r\nclass Study(Base):\r\n    __table__ = Base.metadata.tables['study']\r\n\r\n\r\n@app.route('/users',methods=['GET'])\r\ndef users():\r\n    from sqlalchemy.orm import scoped_session, sessionmaker, Query\r\n    db_session = scoped_session(sessionmaker(bind=engine))\r\n    return(jsonify(db_session.Account.query.all()))\r\n    item_list=[]\r\n    for item in db_session.query(Account.User_ID, Account.Username,Account.Role).all():\r\n        item_list+=item\r\n    return(jsonify(item_list))\r\n\r\n@app.route('/scans',methods=['GET'])\r\ndef scans():\r\n    from sqlalchemy.orm import scoped_session, sessionmaker, Query\r\n    db_session = scoped_session(sessionmaker(bind=engine))\r\n    # return(jsonify(db_session.Account.query.all()))\r\n    item_list = db_session.query(Scan.Scan_ID, Scan.SliceOrient).all()\r\n    items = []\r\n    #\r\n    for item in item_list:\r\n        items.append({'Scan_ID:' : item.Scan_ID, 'SliceOrient' : item.SliceOrient})\r\n\r\n    return(jsonify({'scan' : items}))\r\n    # return jsonify(item_list)\r\n    # return jsonify(Scan.metadata.tables['scan'].columns.keys())\r\n\r\n@app.route(\"/login\", methods=[\"GET\", \"POST\"])\r\ndef login():\r\n    \"\"\"For GET requests, display the login form.\r\n    For POSTS, login the current user by processing the form.\r\n\r\n    \"\"\"\r\n    print db\r\n    form = LoginForm()\r\n    if form.validate_on_submit():\r\n        user = User.query.get(form.email.data)\r\n        if user:\r\n            if bcrypt.check_password_hash(user.password, form.password.data)\r\n                user.authenticated = True\r\n                db.session.add(user)\r\n                db.session.commit()\r\n                login_user(user, remember=True)\r\n                return redirect(url_for(\"bull.reports\"))\r\n    return render_template(\"login.html\", form=form)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app.py b/app.py
+--- a/app.py	
++++ b/app.py	
+@@ -76,21 +76,21 @@
+     # return jsonify(item_list)
+     # return jsonify(Scan.metadata.tables['scan'].columns.keys())
+ 
+-@app.route("/login", methods=["GET", "POST"])
+-def login():
+-    """For GET requests, display the login form.
+-    For POSTS, login the current user by processing the form.
+-
+-    """
+-    print db
+-    form = LoginForm()
+-    if form.validate_on_submit():
+-        user = User.query.get(form.email.data)
+-        if user:
+-            if bcrypt.check_password_hash(user.password, form.password.data)
+-                user.authenticated = True
+-                db.session.add(user)
+-                db.session.commit()
+-                login_user(user, remember=True)
+-                return redirect(url_for("bull.reports"))
+-    return render_template("login.html", form=form)
+\ No newline at end of file
++# @app.route("/login", methods=["GET", "POST"])
++# def login():
++#     """For GET requests, display the login form.
++#     For POSTS, login the current user by processing the form.
++#
++#     """
++#     print db
++#     form = LoginForm()
++#     if form.validate_on_submit():
++#         user = User.query.get(form.email.data)
++#         if user:
++#             if bcrypt.check_password_hash(user.password, form.password.data)
++#                 user.authenticated = True
++#                 db.session.add(user)
++#                 db.session.commit()
++#                 login_user(user, remember=True)
++#                 return redirect(url_for("bull.reports"))
++#     return render_template("login.html", form=form)
+\ No newline at end of file

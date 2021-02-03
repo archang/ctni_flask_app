@@ -13,7 +13,8 @@ conn = pymysql.connect(
 #insert query
 def insert_account(User_ID,Username,Password,Role,Blocked):
     cur=conn.cursor()
-    cur.execute("INSERT INTO account (User_ID,Username,Password,Role,Blocked) VALUES  (%s,%s,%s,%s,%s)", (User_ID,Username,Password,Role,Blocked))
+    cur.execute("INSERT INTO account (User_ID,Username,Password,Role,Blocked) VALUES  (%s,%s,%s,%s,%s)",
+                (User_ID,Username,Password,Role,Blocked))
     conn.commit()
 
 #read the data
@@ -23,9 +24,18 @@ def get_account():
     account = cur.fetchall()
     return account
 
+# /studies
+## show studies belonging to user currently logged in (via auth0) as well as studies shared to current user
 def get_studies_scans():
     cur=conn.cursor()
     # cur.execute("select u.Study_ID,s.SliceOrient from study u inner join scan s on u.Study_ID = s.Study_ID limit 20")
-    cur.execute("select u.Study_ID, u.Study_Description, u.Study_Name, u.Study_Rating, u.Study_Comments, s.Scan_ID, s.Scan_Name, s.Scan_Time, s.FOV, s.Echotime, s.Repetitiontime, s.Nrepetition, s.SpatResol, s.SliceThick, s.NSlice, s.SliceGap, s.SliceDistance, s.SliceOrient, u.Study_Owner from user_studies u inner join scan s on u.Study_ID = s.Study_ID where u.Study_Owner='jjj'")
+    cur.execute("select u.Study_ID, u.Study_Description, u.Study_Name, u.Study_Rating, u.Study_Comments, s.Scan_ID,"
+                "s.Scan_Name, s.Scan_Time, s.FOV, s.Echotime, s.Repetitiontime, s.Nrepetition, s.SpatResol,"
+                "s.SliceThick, s.NSlice, s.SliceGap, s.SliceDistance, s.SliceOrient, u.Study_Owner from user_studies "
+                "u inner join scan s on u.Study_ID = s.Study_ID where u.Study_Owner='pkulkarni'")
     account = cur.fetchall()
     return account
+
+# /manage
+# show only studies belonging to user currently logged in (via auth0)
+# def get
