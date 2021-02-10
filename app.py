@@ -121,28 +121,29 @@ def upload_file():
 def studies():
     if request.method == 'GET':
         study_list = db.get_studies_scans()
+
         studiesArr = []
 
         for study in study_list:
             studiesArr.append({'Study_ID': study[0],
-                        "Study_Description": study[1],
-                        "Study_Name": study[2],
-                        "Study_Rating": study[3],
-                        "Study_Comments": study[4],
-                        "Scan_ID": study[5],
-                        "Scan_Name" : study[6],
-                        "Scan_Time": str(study[7]),
-                        "FOV": study[8],
-                        "Echotime": is_float(study[9]),
-                        "Repetitiontime": is_float(study[10]),
-                        "Nrepetition": is_float(study[11]),
-                        "SpatResol": study[12],
-                        "SliceThick": is_float(study[13]),
-                        "NSlice": is_float(study[14]),
-                        "SliceGap": is_float(study[15]),
-                        "SliceDistance": is_float(study[16]),
-                        "SliceOrient": study[17],
-                            "Study_Owner" : study[18],
+                               "Study_Owner": study[1],
+                        "Study_Description": study[2],
+                        "Study_Name": study[3],
+                        "Study_Rating": study[4],
+                        "Study_Comments": study[5],
+                        "Scan_ID": study[6],
+                        "Scan_Name" : study[7],
+                        "Scan_Time": str(study[8]),
+                        "FOV": study[9],
+                        "Echotime": is_float(study[10]),
+                        "Repetitiontime": is_float(study[11]),
+                        "Nrepetition": is_float(study[12]),
+                        "SpatResol": study[13],
+                        "SliceThick": is_float(study[14]),
+                        "NSlice": is_float(study[15]),
+                        "SliceGap": is_float(study[16]),
+                        "SliceDistance": is_float(study[17]),
+                        "SliceOrient": study[18]
                         })
         return jsonify(studiesArr)
         #
