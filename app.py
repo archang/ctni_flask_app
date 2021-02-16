@@ -11,6 +11,7 @@ from helpers import *
 import sys
 from flask_cors import CORS
 from config import S3_BUCKET
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -85,7 +86,7 @@ def users():
 def upload_file():
 
     # A
-    print("hereA", file=sys.stderr)
+    #print("hereA", file=sys.stderr)
     file = request.files['file']
 
 
@@ -102,20 +103,27 @@ def upload_file():
 
     # C.
     if file.filename == "":
-        print("herec", file=sys.stderr)
+    #    print("herec", file=sys.stderr)
         return "Please select a file"
 
     # D.
     if file and allowed_file(file.filename):
         file.filename = secure_filename(file.filename)
-        print(file.filename, file=sys.stderr)
+        #print(file.filename, file=sys.stderr)
         output   	  = upload_file_to_s3(file, S3_BUCKET)
-        print("hered", file=sys.stderr)
+        #print("hered", file=sys.stderr)
         return str(output)
 
     else:
-        print("hereredirect", file=sys.stderr)
+        #print("hereredirect", file=sys.stderr)
         return redirect("/")
+
+@app.route("/download/<filename>", methods=['GET'])
+def download(filename):
+    if request.method == 'GET':
+        output = download_file(filename, BUCKET)
+
+        return send_file(output, as_attachment=True)
 
 @app.route('/studies', methods=['GET'])
 def studies():
@@ -149,6 +157,11 @@ def studies():
         # print(details)
         # return(json.dumps({'studies' : studies}, default=str))
         # return(jsonify(details))
+
+@app.route("/storage")
+def storage():
+    contents = list_files("flaskdrive")
+    return render_template('storage.html', contents=contents)
 
 # @app.route("/upload", methods=['POST'])
 # def upload():
