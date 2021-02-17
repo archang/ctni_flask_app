@@ -99,3 +99,6 @@ package-lock.json
 /build
 # misc
 npm-debug.log*
+
+# aws config
+config.py
