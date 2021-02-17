@@ -1,0 +1,34 @@
+Index: .idea/ctni_flask_app.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"Flask\">\r\n    <option name=\"enabled\" value=\"true\" />\r\n  </component>\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/venv\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n  <component name=\"TemplatesService\">\r\n    <option name=\"TEMPLATE_CONFIGURATION\" value=\"Jinja2\" />\r\n    <option name=\"TEMPLATE_FOLDERS\">\r\n      <list>\r\n        <option value=\"$MODULE_DIR$/../ctni_flask_app\\templates\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/ctni_flask_app.iml b/.idea/ctni_flask_app.iml
+--- a/.idea/ctni_flask_app.iml	(revision f45d9f726202589db99f266fe094b6571beb5c81)
++++ b/.idea/ctni_flask_app.iml	(date 1613596662525)
+@@ -4,17 +4,19 @@
+     <option name="enabled" value="true" />
+   </component>
+   <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$">
+-      <excludeFolder url="file://$MODULE_DIR$/venv" />
+-    </content>
++    <content url="file://$MODULE_DIR$" />
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
++  <component name="PyDocumentationSettings">
++    <option name="format" value="PLAIN" />
++    <option name="myDocStringFormat" value="Plain" />
++  </component>
+   <component name="TemplatesService">
+     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
+     <option name="TEMPLATE_FOLDERS">
+       <list>
+-        <option value="$MODULE_DIR$/../ctni_flask_app\templates" />
++        <option value="$MODULE_DIR$/templates" />
+       </list>
+     </option>
+   </component>
