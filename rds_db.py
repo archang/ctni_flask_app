@@ -1,12 +1,4 @@
-import pymysql
-
-conn = pymysql.connect(
-    host='ctni.cmuad72yozvs.us-east-1.rds.amazonaws.com',
-    port=3306,
-    user='admin',
-    password='Admin12345',
-    db='ctni',
-)
+from config import conn
 
 #insert query
 def insert_account(User_ID,Username,Password,Role,Blocked):
