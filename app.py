@@ -95,7 +95,6 @@ def studies():
                         "SliceDistance": is_float(study[17]),
                         "SliceOrient": study[18]
                         })
-<<<<<<< HEAD
         return jsonify(studiesArr)
         #
         # print(details)
@@ -115,6 +114,3 @@ def storage():
 #         upload_file(f"uploads/{f.filename}", BUCKET)
 #
 #         return redirect("/storage")
-=======
-        return jsonify(studiesArr)
->>>>>>> bdc9f8b63ffdf868e807a9ba6a5626016b984a4f
