@@ -29,9 +29,10 @@ def get_studies_scans():
     s.Scan_Name, s.Scan_Time, s.FOV, s.Echotime, s.Repetitiontime, s.Nrepetition, s.SpatResol,
     s.SliceThick, s.NSlice, s.SliceGap, s.SliceDistance, s.SliceOrient from study u
     inner join registration r on u.Registration_ID = r.Registration_ID
-    inner join scan s on u.Study_ID = s.Study_ID inner join shares on
-    shares.study_id = u.Study_ID where shares.shared_with='lundbeck')
+    inner join scan s on u.Study_ID = s.Study_ID inner join share on
+    share.Study_ID = u.Study_ID where share.shared_with='lundbeck')
     """)
 
     account = cur.fetchall()
     return account
+

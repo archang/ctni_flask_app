@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 from helpers import *
 from flask_cors import CORS
 from config import S3_BUCKET
+import sys
 
 app = Flask(__name__)
 CORS(app)
@@ -25,13 +26,14 @@ def is_float(val):
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-
+    print(request.files['file'].name,sys.stderr)
     file = request.files['file']
 
     if file.filename == "":
         return "Please select a file"
 
     # if file and allowed_file(file.filename):
+
     file.filename = secure_filename(file.filename)
     output   	  = upload_file_to_s3(file, S3_BUCKET)
     return jsonify(file.filename)
