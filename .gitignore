@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# aws config
+config.py
+
 # C extensions
 *.so
 
@@ -102,3 +105,4 @@ package-lock.json
 /build
 # misc
 npm-debug.log*
+
