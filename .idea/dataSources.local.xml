@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="ctni" uuid="5bcf1b62-2729-476f-b257-82db08827e54">
+    <data-source name="ctni@ctni.cmuad72yozvs.us-east-1.rds.amazonaws.com" uuid="a3365daf-6578-41eb-8581-9ed347bafb3e">
       <database-info product="MySQL" version="8.0.20" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.21 (Revision: 33f65445a1bcc544eb0120491926484da168f199)" dbms="MYSQL" exact-version="8.0.20" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>

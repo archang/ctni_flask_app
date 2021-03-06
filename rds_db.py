@@ -15,24 +15,29 @@ def get_account():
     return account
 
 # /studies
-## show studies belonging to user currently logged in (via auth0) as well as studies shared to current user
+## show studies:
+# 1) belonging to group that user is also a part of
+# 2) that have been explicitly shared with email address of user logged in (via auth0)
+
 def get_studies_scans():
     cur=conn.cursor()
 
     cur.execute( """
-    (select u.Study_ID, r.Owner, u.Study_Description, u.Study_Name, u.Study_Rating, u.Study_Comments, s.Scan_ID,
+(select u.studies_id, u.studies_description, u.studies_name, u.studies_rating, u.studies_comments, s.Scan_ID,
     s.Scan_Name, s.Scan_Time, s.FOV, s.Echotime, s.Repetitiontime, s.Nrepetition, s.SpatResol,
-    s.SliceThick, s.NSlice, s.SliceGap, s.SliceDistance, s.SliceOrient from study u
-    inner join scan s on u.Study_ID = s.Study_ID inner join registration r on u.Registration_ID = r.Registration_ID where r.Owner='lundbeck')
-    UNION
-    (select u.Study_ID, r.Owner, u.Study_Description, u.Study_Name, u.Study_Rating, u.Study_Comments, s.Scan_ID,
-    s.Scan_Name, s.Scan_Time, s.FOV, s.Echotime, s.Repetitiontime, s.Nrepetition, s.SpatResol,
-    s.SliceThick, s.NSlice, s.SliceGap, s.SliceDistance, s.SliceOrient from study u
-    inner join registration r on u.Registration_ID = r.Registration_ID
-    inner join scan s on u.Study_ID = s.Study_ID inner join share on
-    share.Study_ID = u.Study_ID where share.shared_with='lundbeck')
+    s.SliceThick, s.NSlice, s.SliceGap, s.SliceDistance, s.SliceOrient from studies u
+    inner join scan s on u.studies_id = s.Study_ID
+	where u.studies_id IN (
+		(select users_studies.studies_id from users_studies where users_studies.users_id = 
+			(select users.users_id from users where users.users_email = 'yoyashoza@gmail.com'))
+        UNION
+        (select studies_groups.studies_id from studies_groups where studies_groups.groups_id = 
+			(select users_groups.groups_id from users_groups where users_groups.users_id = 
+				(select users.users_id from users where users.users_email = 'yoyashoza@gmail.com')))))
     """)
+
 
     account = cur.fetchall()
     return account
+
 

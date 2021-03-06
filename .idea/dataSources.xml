@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ctni" uuid="5bcf1b62-2729-476f-b257-82db08827e54">
+    <data-source source="LOCAL" name="ctni@ctni.cmuad72yozvs.us-east-1.rds.amazonaws.com" uuid="a3365daf-6578-41eb-8581-9ed347bafb3e">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
