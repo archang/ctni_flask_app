@@ -39,5 +39,45 @@ def get_studies_scans():
 
     account = cur.fetchall()
     return account
+def get_groups():
+    cur = conn.cursor()
+    cur.execute("SELECT  groups_name FROM grps")
+    account = cur.fetchall()
+    return account
+
+def get_user_id_from_email(email):
+    cur=conn.cursor()
+    emailgrabbed=email
+    cur.execute("select u.users_id from users u WHERE u.users_email = '%s'" % emailgrabbed)
+    account = cur.fetchall()
+    return account
+
+def update_user_studies_from_email(user_id,names):
+    cur = conn.cursor()
+    print("hhhhh",names)
+    for nameg in names:
+        print("q",nameg)
+        namei=int(nameg)
+        print("qq",type(user_id))
+        cur.execute("INSERT INTO users_studies (users_id,studies_id) VALUES  (%i,%i)" % (user_id,namei))
+    conn.commit()
+
+def get_user_groupid_from_UG(usergroup_string):
+    cur=conn.cursor()
+    UGgrabbed=usergroup_string
+    cur.execute("select g.groups_id from grps g WHERE g.groups_name = '%s'" % UGgrabbed)
+    account = cur.fetchall()
+    return account
+
+def update_UG_studies_from_UG(UGid,names):
+    cur = conn.cursor()
+    for nameg in names:
+        print("q",nameg)
+        namei=int(nameg)
+        print("qq",type(UGid))
+        cur.execute("INSERT INTO studies_groups (groups_id,studies_id) VALUES  (%i,%i)" % (UGid,namei))
+    conn.commit()
+
+
 
 
