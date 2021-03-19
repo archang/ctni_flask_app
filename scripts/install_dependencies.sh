@@ -1,4 +1,3 @@
-#!/bin/bash
 easy_install pip
 pip install virtualenv
 cd /home/ubuntu/server/

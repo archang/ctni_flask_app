@@ -1,4 +1,3 @@
-#!/bin/bash
 cd /home/ubuntu/server
 source environment/bin/activate
 supervisord -c supervisord.conf
