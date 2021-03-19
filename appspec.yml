@@ -1,15 +1,13 @@
 version: 0.0
 os: linux
 files:
- - source: ./
-   destination: /home/ubuntu/server
- - source: requirements.txt
+ - source: /
    destination: /home/ubuntu/server
 hooks:
-  AfterInstall:
+  BeforeInstall:
    - location: scripts/install_dependencies
      timeout: 300
-     runas: ubuntu
+     runas: root
    - location: scripts/start_server
      timeout: 300
-     runas: ubuntu
+     runas: root
