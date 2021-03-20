@@ -106,4 +106,5 @@ package-lock.json
 /build
 # misc
 npm-debug.log*
-
+#AWSCLIV2.pkg
+AWSCLIV2.pkg
