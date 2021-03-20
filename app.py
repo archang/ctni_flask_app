@@ -5,6 +5,7 @@ from helpers import *
 from flask_cors import CORS
 from config import S3_BUCKET
 from s3_upload import *
+import sys
 
 import os
 
@@ -26,19 +27,23 @@ def is_float(val):
     except ValueError:
         return val
 
-# @app.route('/upload', methods=['POST'])
-# def upload_file():
-#     file = request.files['file']
-#     if file.filename == "":
-#         return "Please select a file"
-#
-#     if file and allowed_file(file.filename):
-#         file.filename = secure_filename(file.filename)
-#         output = upload_file_to_s3(file, S3_BUCKET)
-#         return str(output)
-#
-#     else:
-#         return redirect("/")
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    file = request.files['file']
+    if file.filename == "":
+        print("herea",file=sys.stderr)
+        return "Please select a file"
+
+    if file and allowed_file(file.filename):
+        file.filename = secure_filename(file.filename)
+        print("hereb", file=sys.stderr)
+        # parse method/subject files, insert into RDS, and then zipping
+        output = upload_file_to_s3(file, S3_BUCKET)
+        return redirect(url_for('studies'))
+
+    else:
+        print("herec",file=sys.stderr)
+        return redirect(url_for('studies'))
 
 @app.route("/download/<filename>", methods=['GET'])
 def download(filename):
@@ -49,6 +54,7 @@ def download(filename):
 
 @app.route('/studies', methods=['GET'])
 def studies():
+
     if request.method == 'GET':
         study_list = db.get_studies_scans()
 
@@ -86,11 +92,11 @@ def storage():
     contents = list_files("flaskdrive")
     return render_template('storage.html', contents=contents)
 
-@app.route("/upload", methods=['POST'])
-def upload():
-    if request.method == "POST":
-        f = request.files['file']
-        f.save(os.path.join(UPLOAD_FOLDER, f.filename))
-        upload_file(f"uploads/{f.filename}", BUCKET)
-
-        return redirect("/storage")
+# @app.route("/upload", methods=['POST'])
+# def upload():
+#     if request.method == "POST":
+#         f = request.files['file']
+#         f.save(os.path.join(UPLOAD_FOLDER, f.filename))
+#         upload_file(f"uploads/{f.filename}", BUCKET)
+#
+#         return redirect("/storage")

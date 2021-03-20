@@ -910,7 +910,7 @@
     <table id="285" parent="2" name="coiltest">
       <Collation>latin1_swedish_ci</Collation>
     </table>
-    <table id="286" parent="2" name="groups"/>
+    <table id="286" parent="2" name="grps"/>
     <table id="287" parent="2" name="preference">
       <Collation>latin1_swedish_ci</Collation>
     </table>
@@ -1636,7 +1636,7 @@
     </foreign-key>
     <foreign-key id="434" parent="295" name="studies_groups___fk">
       <ColNames>groups_id</ColNames>
-      <RefTableName>groups</RefTableName>
+      <RefTableName>grps</RefTableName>
       <RefColNames>groups_id</RefColNames>
     </foreign-key>
     <column id="435" parent="296" name="Study_ID">
@@ -1797,7 +1797,7 @@
     </foreign-key>
     <foreign-key id="468" parent="298" name="users_groups_groups_group_id_fk">
       <ColNames>groups_id</ColNames>
-      <RefTableName>groups</RefTableName>
+      <RefTableName>grps</RefTableName>
       <RefColNames>groups_id</RefColNames>
     </foreign-key>
     <column id="469" parent="299" name="users_studies_id">
