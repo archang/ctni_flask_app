@@ -94,11 +94,13 @@ def email():
 #
 #         return send_file(output, as_attachment=True)
 
-@app.route('/studies', methods=['GET'])
-def studies():
-    if request.method == 'GET':
-        study_list = db.get_studies_scans()
+@app.route('/studies/<email>/<auth0id>', methods=['GET'])
+def studies(email, auth0id):
+    print("App.py",email)
 
+    if request.method == 'GET':
+        study_list = db.get_studies_scans(email)
+        db.insert_account(email, auth0id)
         studiesArr = []
 
         for study in study_list:
