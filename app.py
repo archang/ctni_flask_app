@@ -1,4 +1,3 @@
-import self as self
 from flask import Flask, render_template, request, flash, redirect,url_for, jsonify, session, send_file
 import rds_db as db
 from werkzeug.utils import secure_filename

@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11362172-75a0-43c1-a619-758741e29bee" name="Default Changelist" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/.idea/ctni_flask_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ctni_flask_app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/5bcf1b62-2729-476f-b257-82db08827e54.xml" beforeDir="false" />
@@ -17,6 +20,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/afc4f844-79ac-436d-9770-18781baad380.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/afc4f844-79ac-436d-9770-18781baad380/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+>>>>>>> 7192354c41f1a67a186a669c1a1819f2cd87884f
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rds_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/rds_db.py" afterDir="false" />
@@ -146,9 +150,9 @@
     </configuration>
     <list>
       <item itemvalue="Database Script.ab1d5852-c55e-461a-bf85-f5137383dd5a.sql" />
-      <item itemvalue="Flask server.Flask_new" />
-      <item itemvalue="Flask server.Flask" />
       <item itemvalue="Python.ctni_flask_app" />
+      <item itemvalue="Flask server.Flask" />
+      <item itemvalue="Flask server.Flask_new" />
     </list>
     <recent_temporary>
       <list>
@@ -204,6 +208,9 @@
     <SUITE FILE_PATH="coverage/ctni_flask_app$ctni_flask_app.coverage" NAME="ctni_flask_app Coverage Results" MODIFIED="1613442248428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/ctni_flask_app$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1612994339894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/ctni_flask_app$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1612992143670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+<<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/ctni_flask_app$Flask_new.coverage" NAME="Flask_new Coverage Results" MODIFIED="1616281162012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+=======
     <SUITE FILE_PATH="coverage/ctni_flask_app$Flask_new.coverage" NAME="Flask_new Coverage Results" MODIFIED="1616187545232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
@@ -226,5 +233,6 @@
     <SUITE FILE_PATH="coverage/ctni_flask_app$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1615068920229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ctni_flask_app$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1611440833838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/ctni_flask_app$ctni_flask_app.coverage" NAME="ctni_flask_app Coverage Results" MODIFIED="1610665136894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+>>>>>>> 7192354c41f1a67a186a669c1a1819f2cd87884f
   </component>
 </project>

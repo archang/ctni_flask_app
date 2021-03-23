@@ -28,6 +28,7 @@ def get_studies_scans(email):
     print("get study scan called")
     cur=conn.cursor()
 
+
     getStudiesQuery = """
 (select u.studies_id, u.studies_description, u.studies_name, u.studies_rating, u.studies_comments, s.Scan_ID,
     s.Scan_Name, s.Scan_Time, s.FOV, s.Echotime, s.Repetitiontime, s.Nrepetition, s.SpatResol,
