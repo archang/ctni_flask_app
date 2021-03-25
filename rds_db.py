@@ -16,6 +16,14 @@ def get_account():
     account = cur.fetchall()
     return account
 
+def get_groups():
+    cur = conn.cursor()
+
+    cur.execute("""
+    select groups_name from grps
+    """)
+
+    return cur.fetchall()
 
 # /studies
 ## show studies:
@@ -29,7 +37,7 @@ def get_studies_scans():
     (select u.studies_id, u.studies_description, u.studies_name, u.studies_rating, u.studies_comments, s.Scan_ID,
         s.Scan_Name, s.Scan_Time, s.FOV, s.Echotime, s.Repetitiontime, s.Nrepetition, s.SpatResol,
         s.SliceThick, s.NSlice, s.SliceGap, s.SliceDistance, s.SliceOrient from studies u
-    inner join scan s on u.studies_id = s.Study_ID
+    inner join scans s on u.studies_id = s.Study_ID
 	where u.studies_id IN (
 		(select users_studies.studies_id from users_studies where users_studies.users_id = 
 			(select users.users_id from users where users.users_email = 'ahuja.b@northeastern.edu'))

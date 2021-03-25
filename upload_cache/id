@@ -1,0 +1,12 @@
+##TITLE=Parameter List, ParaVision 6.0.1
+##JCAMPDX=4.24
+##DATATYPE=Parameter Values
+##ORIGIN=Bruker BioSpin MRI GmbH
+##OWNER=ctni
+$$ 2019-01-09 18:17:09.209 -0500  ctni@CZC642BNVT
+$$ /opt/PV6.0.1/data/ctni/20190109_180755_27D_Cannabis_M17_1_1/5/pdata/1/id
+$$ process /opt/PV6.0.1/prog/bin/parxserver
+##$DATASET_KEY=( 65 )
+<2.16.756.5.5.100.8323328.49379.1547075829.2715>
+##END=
+$$ File finished by PARX at 2019-01-09 18:17:09.209 -0500
