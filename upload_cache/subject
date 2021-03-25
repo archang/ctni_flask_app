@@ -1,0 +1,90 @@
+##TITLE=Parameter List, ParaVision 6.0.1
+##JCAMPDX=4.24
+##DATATYPE=Parameter Values
+##ORIGIN=Bruker BioSpin MRI GmbH
+##OWNER=testgroup
+$$ 2019-01-09 18:17:41.229 -0500  ctni@CZC642BNVT
+$$ /opt/PV6.0.1/data/ctni/20190109_180755_27D_Cannabis_M17_1_1/subject
+$$ process /opt/PV6.0.1/prog/bin/parxserver
+##$SUBJECT_version_nr=1
+##$SUBJECT_id=( 61 )
+<27D_Cannabis_M17>
+##$SUBJECT_instance_uid=( 66 )
+<2.16.756.5.5.100.8323328.49379.1547075275.2591>
+##$SUBJECT_instance_creation_date=(1547075275, 721, -300)
+$$ @vis= SUBJECT_version_nr SUBJECT_id SUBJECT_instance_uid
+##$SUBJECT_name_string=( 64 )
+<27D_Cannabis_M17>
+##$SUBJECT_name=(<27D_Cannabis_M17>, <>)
+##$SUBJECT_dbirth=( 12 )
+<09 Jan 2019>
+$$ @vis= SUBJECT_instance_creation_date SUBJECT_name_string SUBJECT_name
+##$SUBJECT_type=Quadruped
+##$SUBJECT_sex=( 8 )
+<male>
+##$SUBJECT_sex_animal=MALE
+##$SUBJECT_remarks=( 2048 )
+<>
+$$ @vis= SUBJECT_dbirth SUBJECT_type SUBJECT_sex SUBJECT_sex_animal
+##$SUBJECT_study_name=( 64 )
+<27D_Cannabis_M17>
+##$SUBJECT_study_nr=1
+##$SUBJECT_study_instance_uid=( 65 )
+<2.16.756.5.5.100.8323328.49379.1547075275.2592>
+$$ @vis= SUBJECT_remarks SUBJECT_study_name SUBJECT_study_nr
+##$SUBJECT_weight=0.001
+##$SUBJECT_referral=( 64 )
+<ctni>
+##$SUBJECT_purpose=( 2048 )
+<>
+$$ @vis= SUBJECT_study_instance_uid SUBJECT_weight SUBJECT_referral
+##$SUBJECT_pos_valid=Yes
+##$SUBJECT_entry=SUBJ_ENTRY_HeadFirst
+##$SUBJECT_position=SUBJ_POS_Supine
+##$SUBJECT_date=<2019-01-09T18:07:55,721-0500>
+$$ @vis= SUBJECT_purpose SUBJECT_pos_valid SUBJECT_entry SUBJECT_position
+##$SUBJECT_abs_date=(1547075275, 721, -300)
+##$SUBJECT_comment=( 2048 )
+<>
+##$SUBJECT_study_adj_config=( <MRI_Default> , <MRI Default> )
+##$SUBJECT_study_gradient_system=( 10240 )
+<$Bis,1,20110101,2048,GRADSYS,1#$Production,BGA12S2,0000,,,BFR,20110101#$Name,
+BGA12S2#$GradSystem,1.0,19,S116,0,0,1#$GradCoil,1.0,B0,S,2500,1.4,0,130,10,
+0#$GradCoil,1.0,X,S,935,0.11,0.043,500,300,740#$GradCoil,1.0,Y,S,935,0.10,
+0.095,500,300,580#$GradCoil,1.0,Z,S,935,0.10,0.016,500,300,810#$EndBis,97,B7#>
+##$SUBJECT_study_shim_system=( 10240 )
+<$Bis,1,20110101,2048,SHIMSYS,1#$Production,BGA12S2,0000,,,BMRIDE,
+20110101#$Name,BGA12S2#$ShimSystem,1.0,19,S116,7,0,0#$ShimCoil,1.0,1,3.2,150,
+10,0#$ShimCoil,1.0,2,2.9,150,10,0#$ShimCoil,1.0,3,2.9,150,10,0#$ShimCoil,1.0,
+4,3.6,150,10,0#$ShimCoil,1.0,5,3.6,150,10,0#$ShimCoil,1.0,6,4.4,150,10,
+0#$ShimCoil,1.0,7,1.0,150,10,0#$ShimFunction,1.0,1,Z2,2,250#$ShimFunction,1.0,
+2,ZX,2,260#$ShimFunction,1.0,3,ZY,2,260#$ShimFunction,1.0,4,2XY,2,
+110#$ShimFunction,1.0,5,X2-Y2,2,110#$ShimFunction,1.0,6,Z3,3,10#$ShimFunction,
+1.0,7,Z4,4,1#$ShimMatrix,1.0,1,1,1#$ShimMatrix,1.0,2,2,1#$ShimMatrix,1.0,3,3,
+1#$ShimMatrix,1.0,4,4,1#$ShimMatrix,1.0,5,5,1#$ShimMatrix,1.0,6,6,
+1#$ShimMatrix,1.0,7,7,1#$EndBis,69,B8#>
+##$SUBJECT_study_coil_configuration=( 65 )
+<2.16.756.5.5.100.8323328.5639.1498577687.17>
+##$SUBJECT_study_coil_table=( 10240 )
+<$Bis,1,20170627,2048,COILTABLE,1#$Name,AIR Quad Transceiver 1H High 
+Power#$Id,1.0,2.16.756.5.5.100.8323328.5639.1498577687.17,,7db3#$PMap,1.0,1,
+Generic Quad Transceiver 1H High Power,AIR,AIR_QUAD00001,00001,#$PCAuxInfo,
+1.0,1,1,,PreampProbe,1,PreampProbe,2,,,#$PCAuxInfo,1.0,1,2,,PreampProbe,1,
+PreampProbe,2,,,#$EndBis, D0, 3C#>
+##$SUBJECT_study_coils=( 1, 10240 )
+<$Bis,1,20170919,2048,PICS,5#\
+$Prd,AIR_QUAD00001,00001,,,AIR,0#\
+$Nam,Generic Quad Transceiver 1H High Power#\
+$PComp,1.0,MRI,,300#\
+$PType,1.0,MRI#\
+$PACoi,1.0,2#\
+$PMRI,1.0,Volume,,,#\
+$PChan,1.0,1H,,,,1000,20,,10,#\
+$PCoil,1.0,1,,1,1H#\
+$PCoil,1.0,2,,1,1H#\
+$PCConn,1.0,1,T/R,2,,,8,0.2,,#\
+$PCConn,1.0,2,T/R,1,,,8,0.2,,#\
+$EndBis,F7,2D#>
+$$ @vis= SUBJECT_date SUBJECT_abs_date SUBJECT_comment SUBJECT
+##END=
+$$ File finished by PARX at 2019-01-09 18:17:41.229 -0500

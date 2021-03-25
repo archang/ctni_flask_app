@@ -1,4 +1,5 @@
 import boto3
+import os
 
 from config import S3_KEY, S3_SECRET, S3_BUCKET,S3_LOCATION
 
@@ -19,7 +20,7 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         s3.upload_fileobj(
             file,
             bucket_name,
-            Key = file.path +'/'+file.filename,
+            Key = file.filename,
             ExtraArgs={
                 "ACL": acl,
                 "ContentType": file.content_type
@@ -31,3 +32,36 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         return e
 
     return "{}{}".format(S3_LOCATION, file.filename)
+
+def download_file(file_name, bucket):
+    """
+    Function to download a given file from an S3 bucket
+    """
+    local_dir = None
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket(bucket)
+    for obj in bucket.objects.filter(Prefix=file_name):
+        target = obj.key if local_dir is None \
+            else os.path.join(local_dir, os.path.relpath(obj.key, file_name))
+        if not os.path.exists(os.path.dirname(target)):
+            os.makedirs(os.path.dirname(target))
+        if obj.key[-1] == '/':
+            continue
+        bucket.download_file(obj.key, target)
+
+    return target
+
+def list_files(bucket):
+    """
+    Function to list files in a given S3 bucket
+    """
+    s3 = boto3.client('s3')
+    contents = []
+    try:
+        for item in s3.list_objects(Bucket=bucket)['Contents']:
+            print(item)
+            contents.append(item)
+    except Exception as e:
+        pass
+
+    return contents
