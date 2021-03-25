@@ -68,11 +68,13 @@ def email():
     if request.method == 'POST':
         groupdata=request.get_data()
         GD_json_data = json.loads(groupdata)
+        print("json back",GD_json_data)
         # GD_string = groupdata.decode()
         #print("hello back email", type(email_string))
         email_string=GD_json_data[0]
 
         UG_string=GD_json_data[1]
+
         print("eeee", UG_string)
         user_id = db.get_user_id_from_email(email_string)
         user_group = db.get_user_groupid_from_UG(UG_string)
