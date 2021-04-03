@@ -1,4 +1,3 @@
-import self as self
 from flask import Flask, render_template, request, flash, redirect,url_for, jsonify, session, send_file
 import rds_db as db
 from werkzeug.utils import secure_filename
@@ -7,6 +6,7 @@ from flask_cors import CORS
 from config import S3_BUCKET
 from s3_upload import *
 import json
+import boto3
 
 import os
 
@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app)
 UPLOAD_FOLDER = "uploads"
 BUCKET = "ctni-bucket"
-
+s3 = boto3.client('s3')
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'zip'}
 names = []
 def allowed_file(filename):
@@ -43,25 +43,22 @@ def is_float(val):
 #         return redirect("/")
 
 @app.route('/download', methods=['POST'])
-def download_file():
+def download_multiple_file():
+    scan_names = []
     if request.method == 'POST':
         studiesgrabbed=request.get_data()
         json_data = json.loads(studiesgrabbed)
-        global names
-        names=json_data
-        print("hello back", names)
+        for item in json_data:
+            scan_names.append(item['Scan_Name'])
 
-
-
-        # study_name = "Study_ID"
-        #
-        #
-        # for i in (json_data):
-        #     print(i)
-        #     names.append(i[study_name])
-
-        print("hey you names", json_data)
-        return jsonify("hi")
+        url = s3.generate_presigned_url(
+            ClientMethod='get_object',
+            Params={
+                'Bucket': BUCKET,
+                'Key': 'functional_RARE/serverless-app.zip'
+            }
+        )
+    return jsonify(url)
 
 @app.route('/email', methods=['POST'])
 def email():
