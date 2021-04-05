@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session, send_file
 import rds_db as db
 from werkzeug.utils import secure_filename
@@ -91,20 +93,20 @@ def email():
         print("json back",GD_json_data)
         # GD_string = groupdata.decode()
         #print("hello back email", type(email_string))
-        email_string=GD_json_data[0]
-
-        UG_string=GD_json_data[1]
-
-        print("eeee", UG_string)
-        user_id = db.get_user_id_from_email(email_string)
-        user_group = db.get_user_groupid_from_UG(UG_string)
-        print("gotcha UG", user_group[0][0])
-        print("gotcha",user_id[0][0])
+        emaildefiner="@"
         global names
-        print("Namesss", names)
-        db.update_user_studies_from_email(int(user_id[0][0]),names)
-        db.update_UG_studies_from_UG(int(user_group[0][0]),names)
-        print("hey you email", email_string)
+        for data in GD_json_data:
+            if emaildefiner in data:
+                email_string=data
+                user_id = db.get_user_id_from_email(email_string)
+                print("Namesss", names)
+                db.update_user_studies_from_email(int(user_id[0][0]), names)
+            else:
+                UG_string=data
+                print("eeee", UG_string)
+                user_group = db.get_user_groupid_from_UG(UG_string)
+                print("gotcha UG", user_group[0][0])
+                db.update_UG_studies_from_UG(int(user_group[0][0]),names)
         return jsonify("hi")
 
 
@@ -155,8 +157,6 @@ def studies(email, auth0id):
 def groups():
     if request.method == 'GET':
         groups_list = db.get_groups()
-
-
         groupsarr = []
 
         for group in groups_list:
