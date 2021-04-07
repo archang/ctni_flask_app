@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session, send_file
 import rds_db as db
 from werkzeug.utils import secure_filename
@@ -17,6 +19,7 @@ BUCKET = "ctni-bucket"
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'zip', 'html'}
 names = []
 
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -32,7 +35,6 @@ def is_float(val):
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-
     upload_dir = "upload_cache"
 
     file = request.files['file']
@@ -48,30 +50,29 @@ def upload_file():
 
         path_to_file = os.path.join(upload_dir, file.filename)
         file.save(path_to_file)
-        print(upload_dir+"/"+file.filename,file=sys.stderr)
+        print(upload_dir + "/" + file.filename, file=sys.stderr)
         if file.filename == "method":
-            print("about to execute methodFile",file=sys.stderr)
+            print("about to execute methodFile", file=sys.stderr)
             methodFile(path_to_file)
-
 
         return "Fi"
 
-@app.route('/groups',methods=['GET'])
+
+@app.route('/groups', methods=['GET'])
 def groups():
     if request.method == 'GET':
         groups_list = db.get_groups()
         return jsonify(groups_list)
 
+
 @app.route('/download', methods=['POST'])
 def download_file():
     if request.method == 'POST':
-        studiesgrabbed=request.get_data()
+        studiesgrabbed = request.get_data()
         json_data = json.loads(studiesgrabbed)
         global names
-        names=json_data
+        names = json_data
         print("hello back", names)
-
-
 
         # study_name = "Study_ID"
         #
@@ -83,30 +84,31 @@ def download_file():
         print("hey you names", json_data)
         return jsonify("hi")
 
+
 @app.route('/email', methods=['POST'])
 def email():
     if request.method == 'POST':
-        groupdata=request.get_data()
+        groupdata = request.get_data()
         GD_json_data = json.loads(groupdata)
-        print("json back",GD_json_data)
+        print("json back", GD_json_data)
         # GD_string = groupdata.decode()
-        #print("hello back email", type(email_string))
-        email_string=GD_json_data[0]
-
-        UG_string=GD_json_data[1]
-
-        print("eeee", UG_string)
-        user_id = db.get_user_id_from_email(email_string)
-        user_group = db.get_user_groupid_from_UG(UG_string)
-        print("gotcha UG", user_group[0][0])
-        print("gotcha",user_id[0][0])
+        # print("hello back email", type(email_string))
+        emaildefiner = "@"
         global names
-        print("Namesss", names)
-        db.update_user_studies_from_email(int(user_id[0][0]),names)
-        db.update_UG_studies_from_UG(int(user_group[0][0]),names)
-        print("hey you email", email_string)
+        for data in GD_json_data:
+            if data != '':
+                if emaildefiner in data:
+                    email_string = data
+                    user_id = db.get_user_id_from_email(email_string)
+                    print("Namesss", names)
+                    db.update_user_studies_from_email(int(user_id[0][0]), names)
+                else:
+                    UG_string = data
+                    print("eeee", UG_string)
+                    user_group = db.get_user_groupid_from_UG(UG_string)
+                    print("gotcha UG", user_group[0][0])
+                    db.update_UG_studies_from_UG(int(user_group[0][0]), names)
         return jsonify("hi")
-
 
 
 # @app.route("/download/<filename>", methods=['GET'])
@@ -118,7 +120,7 @@ def email():
 
 @app.route('/studies/<email>/<auth0id>', methods=['GET'])
 def studies(email, auth0id):
-    print("App.py",email)
+    print("App.py", email)
 
     if request.method == 'GET':
         study_list = db.get_studies_scans(email)
@@ -151,17 +153,19 @@ def studies(email, auth0id):
         # print(details)
         # return(json.dumps({'studies' : studies}, default=str))
         # return(jsonify(details))
+
+
 @app.route('/groups', methods=['GET'])
-def groups():
+def grps():
     if request.method == 'GET':
         groups_list = db.get_groups()
-
-
         groupsarr = []
 
         for group in groups_list:
             groupsarr.append(group[0])
         return jsonify(groupsarr)
+
+
 @app.route("/storage")
 def storage():
     contents = list_files("flaskdrive")
